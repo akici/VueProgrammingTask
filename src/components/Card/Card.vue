@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-12 mb-5">
+    <div class="col-12">
       <div class="d-flex flex-column flex-md-row justify-content-between">
         <CardItem v-for="card in cards" v-bind:key="card.id"
                   :card="card" :is-selected="card === selectedCard"

@@ -19,11 +19,13 @@ export default class TransactionItemComponent extends Vue {
 </script>
 
 <style scoped lang="scss">
+@import '../../assets/styles/mixins';
+
 .transaction-item {
+  @include paddings;
   width: 100%;
   min-height: 100px;
   margin-bottom: 24px;
-  padding: 24px 48px;
   border-radius: 12px;
   display: flex;
   align-items: center;

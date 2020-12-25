@@ -1,0 +1,7 @@
+@mixin paddings() {
+  padding: 12px 24px;
+
+  @media (min-width: 768px) {
+    padding: 24px 48px;
+  }
+}

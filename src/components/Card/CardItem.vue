@@ -1,5 +1,5 @@
 <template>
-  <div class="card-item" role="button" :aria-pressed="isSelected"
+  <div class="card-item mb-5" role="button" :aria-pressed="isSelected"
        :class="cardType"
        @click="onSelectedCard()">
     <p>{{card.description}}</p>
@@ -30,10 +30,12 @@ export default class CardItemComponent extends Vue {
 </script>
 
 <style scoped lang="scss">
+@import '../../assets/styles/mixins';
+
 .card-item {
+  @include paddings;
   width: 100%;
   min-height: 250px;
-  padding: 24px 48px;
   border: none;
   border-radius: 12px;
   text-align: left;
