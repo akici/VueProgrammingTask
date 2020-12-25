@@ -18,5 +18,6 @@ module.exports = {
     'import/no-mutable-exports': 'off',
     'lines-between-class-members': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'import/no-cycle': 'off',
   },
 };

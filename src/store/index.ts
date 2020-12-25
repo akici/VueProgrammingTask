@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex, { Store } from 'vuex';
 import { initialiseStores } from '@/store/store-accessor';
 import card from './modules/card';
+import transaction from './modules/transaction';
 
 Vue.use(Vuex);
 
@@ -14,6 +15,7 @@ const store = new Vuex.Store({
   state: {},
   modules: {
     card,
+    transaction,
   },
 });
 

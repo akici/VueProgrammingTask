@@ -8,7 +8,7 @@ enum CardTypeCssClass {
   BUSINESS = 'business-card',
 }
 
-export const cardType = {
+export const cardType: {[key: string]: string} = {
   [CardTypeId.PRIVATE]: CardTypeCssClass.PRIVATE,
   [CardTypeId.BUSINESS]: CardTypeCssClass.BUSINESS,
 };
