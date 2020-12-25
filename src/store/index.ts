@@ -3,6 +3,7 @@ import Vuex, { Store } from 'vuex';
 import { initialiseStores } from '@/store/store-accessor';
 import card from './modules/card';
 import transaction from './modules/transaction';
+import filter from './modules/filter';
 
 Vue.use(Vuex);
 
@@ -16,6 +17,7 @@ const store = new Vuex.Store({
   modules: {
     card,
     transaction,
+    filter,
   },
 });
 

@@ -4,7 +4,7 @@
       <div class="d-flex flex-column flex-md-row justify-content-between">
         <CardItem v-for="card in cards" v-bind:key="card.id"
                   :card="card" :is-selected="card === selectedCard"
-                  @selected-card="setSelectedCard" />
+                  @selected-card="selectCard" />
       </div>
     </div>
   </div>
@@ -33,18 +33,18 @@ export default class CardComponent extends Vue {
     return this.cardStore.selectedCard;
   }
 
-  setSelectedCard(card: Card): void {
-    this.cardStore.setSelectedCard(card);
+  selectCard(card: Card): void {
+    this.cardStore.setCard(card);
   }
 
-  setFirstCardSelected(): void {
+  selectFirstCard(): void {
     const firstCard = this.cards[0];
-    this.setSelectedCard(firstCard);
+    this.selectCard(firstCard);
   }
 
   async created() {
     await this.cardStore.fetchCards();
-    this.setFirstCardSelected();
+    this.selectFirstCard();
   }
 }
 </script>

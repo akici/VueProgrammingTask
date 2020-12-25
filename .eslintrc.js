@@ -19,5 +19,6 @@ module.exports = {
     'lines-between-class-members': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'import/no-cycle': 'off',
+    'class-methods-use-this': 'off',
   },
 };

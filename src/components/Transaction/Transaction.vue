@@ -1,8 +1,11 @@
 <template>
   <div class="row mt-5">
     <div class="col-12 d-flex flex-column">
+      <template v-if="transactions.length">
       <TransactionItem v-for="transaction in transactions" v-bind:key="transaction.id"
                        :transaction="transaction" :currency="currency" :class="cardType"/>
+      </template>
+      <p v-else>No transactions found</p>
     </div>
   </div>
 </template>
@@ -27,7 +30,7 @@ export default class TransactionComponent extends Vue {
   currency = Utils.getCurrency(CurrencyCountry.Europe);
 
   get transactions(): Transaction[] | [] {
-    return this.cardTransactionStore.transactionsBySelectedCard;
+    return this.cardTransactionStore.transactions;
   }
 
   get cardType(): string {

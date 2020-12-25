@@ -4,7 +4,7 @@ import {
 import { CardTransaction } from '@/ApiClient/data/model/CardTransaction';
 import apiClient from '@/ApiClient';
 import { Transaction } from '@/ApiClient/data/model/Transaction';
-import { cardStore } from '@/store';
+import { cardStore, filterStore } from '@/store';
 
 @Module({ name: 'transaction' })
 export default class TransactionModule extends VuexModule {
@@ -16,6 +16,13 @@ export default class TransactionModule extends VuexModule {
     return this.cardTransaction ? this.cardTransaction[selectedCardId] : [];
   }
 
+  get transactions(): Transaction[] | [] {
+    if (!this.transactionsBySelectedCard) {
+      return [];
+    }
+    return this.transactionsBySelectedCard.filter(TransactionModule.filterTransactions);
+  }
+
   @Mutation
   setCardTransactions(cardTransaction: CardTransaction): void {
     this.cardTransaction = cardTransaction;
@@ -24,5 +31,13 @@ export default class TransactionModule extends VuexModule {
   @Action({ commit: 'setCardTransactions' })
   async fetchCardTransactions(): Promise<CardTransaction> {
     return this.apiClient.fetchCardTransactions();
+  }
+
+  private static filterTransactions(transaction: Transaction) {
+    const description = filterStore.keyword.description.trim().toLowerCase();
+    const amount = filterStore.keyword.amount.trim();
+    return transaction.description.toLowerCase()
+      .includes(description) && transaction.amount.toString()
+      .includes(amount);
   }
 }

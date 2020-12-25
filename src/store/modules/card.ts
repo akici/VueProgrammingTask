@@ -3,6 +3,8 @@ import {
 } from 'vuex-module-decorators';
 import { Card } from '@/ApiClient/data/model/Card';
 import apiClient from '@/ApiClient';
+import { filterStore } from '@/store';
+import { FilterKeyword } from '@/enum/filter';
 
 @Module({ name: 'card' })
 export default class CardModule extends VuexModule {
@@ -23,5 +25,16 @@ export default class CardModule extends VuexModule {
   @Action({ commit: 'setCards' })
   async fetchCards(): Promise<Card[]> {
     return this.apiClient.fetchCards();
+  }
+
+  @Action({ commit: 'setSelectedCard' })
+  setCard(card: Card): Card {
+    CardModule.resetKeyword();
+    return card;
+  }
+
+  private static resetKeyword(): void {
+    const emptyKeyword: FilterKeyword = { description: '', amount: '' };
+    filterStore.updateKeyword(emptyKeyword);
   }
 }
