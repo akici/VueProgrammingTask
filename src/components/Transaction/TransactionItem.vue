@@ -9,14 +9,12 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
-import Utils from '@/utils/utils';
-import { CurrencyCountry } from '@/enum/transaction';
 import { Transaction } from '@/ApiClient/data/model/Transaction';
 
 @Component
 export default class TransactionItemComponent extends Vue {
   @Prop() transaction!: Transaction;
-  currency = Utils.getCurrency(CurrencyCountry.Europe);
+  @Prop() currency!: string;
 }
 </script>
 
