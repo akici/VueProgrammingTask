@@ -8,7 +8,6 @@ import { FilterKeyword } from '@/enum/filter';
 
 @Module({ name: 'card' })
 export default class CardModule extends VuexModule {
-  private apiClient = apiClient;
   cards: Card[] = [];
   selectedCard: Card | null = null;
 
@@ -24,7 +23,7 @@ export default class CardModule extends VuexModule {
 
   @Action({ commit: 'setCards' })
   async fetchCards(): Promise<Card[]> {
-    return this.apiClient.fetchCards();
+    return apiClient.fetchCards();
   }
 
   @Action({ commit: 'setSelectedCard' })

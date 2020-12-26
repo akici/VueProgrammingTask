@@ -25,20 +25,18 @@ import { CurrencyCountry } from '@/enum/transaction';
   },
 })
 export default class TransactionComponent extends Vue {
-  private cardTransactionStore = cardTransactionStore;
-  private cardStore = cardStore;
   currency = Utils.getCurrency(CurrencyCountry.Europe);
 
   get transactions(): Transaction[] | [] {
-    return this.cardTransactionStore.transactions;
+    return cardTransactionStore.transactions;
   }
 
   get cardType(): string {
-    return Utils.getCardType(this.cardStore?.selectedCard?.id || '');
+    return Utils.getCardType(cardStore?.selectedCard?.id || '');
   }
 
   async created() {
-    await this.cardTransactionStore.fetchCardTransactions();
+    await cardTransactionStore.fetchCardTransactions();
   }
 }
 </script>

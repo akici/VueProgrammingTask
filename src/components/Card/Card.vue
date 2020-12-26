@@ -23,18 +23,16 @@ import CardItem from './CardItem.vue';
   },
 })
 export default class CardComponent extends Vue {
-  private cardStore = cardStore;
-
   get cards(): Card[] {
-    return this.cardStore.cards;
+    return cardStore.cards;
   }
 
   get selectedCard(): Card | null {
-    return this.cardStore.selectedCard;
+    return cardStore.selectedCard;
   }
 
   selectCard(card: Card): void {
-    this.cardStore.setCard(card);
+    cardStore.setCard(card);
   }
 
   selectFirstCard(): void {
@@ -43,7 +41,7 @@ export default class CardComponent extends Vue {
   }
 
   async created() {
-    await this.cardStore.fetchCards();
+    await cardStore.fetchCards();
     this.selectFirstCard();
   }
 }

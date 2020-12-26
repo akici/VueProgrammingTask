@@ -8,7 +8,6 @@ import { cardStore, filterStore } from '@/store';
 
 @Module({ name: 'transaction' })
 export default class TransactionModule extends VuexModule {
-  private apiClient = apiClient;
   private cardTransaction: CardTransaction | null = null;
 
   get transactionsBySelectedCard(): Transaction[] | [] {
@@ -30,10 +29,10 @@ export default class TransactionModule extends VuexModule {
 
   @Action({ commit: 'setCardTransactions' })
   async fetchCardTransactions(): Promise<CardTransaction> {
-    return this.apiClient.fetchCardTransactions();
+    return apiClient.fetchCardTransactions();
   }
 
-  private static filterTransactions(transaction: Transaction) {
+  private static filterTransactions(transaction: Transaction): boolean {
     const description = filterStore.keyword.description.trim().toLowerCase();
     const amount = filterStore.keyword.amount.trim();
     return transaction.description.toLowerCase()
